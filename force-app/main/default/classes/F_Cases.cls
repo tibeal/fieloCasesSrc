@@ -17,7 +17,7 @@ public class F_Cases {
             if (record.Status == 'Closed') {
                 record.F_SLAInHours__c = 0;
             }
-            userIds.add(record.CreatedById);
+            userIds.add(record.OwnerId);
         }
 
         Map<Id,Id> memberIdByUserIdMap = new Map<Id,Id>();
@@ -31,9 +31,9 @@ public class F_Cases {
         }
 
         for (Case record : records) {
-            if (!memberIdByUserIdMap.containsKey(record.CreatedById)) continue;
+            if (!memberIdByUserIdMap.containsKey(record.OwnerId)) continue;
 
-            record.Member__c = memberIdByUserIdMap.get(record.CreatedById);
+            record.Member__c = memberIdByUserIdMap.get(record.OwnerId);
         }
     }
 
@@ -46,7 +46,10 @@ public class F_Cases {
             Case oldRecord = existingRecords.get(record.Id);
 
             if (record.Status == CLOSED_STATUS && oldRecord.Status != CLOSED_STATUS) {
-                Long hours = (record.ClosedDate.getTime() - record.CreatedDate.getTime()) / 1000 / 60 / 60;
+                Long closeDateTimestamp = record.ClosedDate?.getTime() != null ?
+                    record.ClosedDate.getTime() :
+                    System.now().getTime();
+                Long hours = (closeDateTimestamp - record.CreatedDate.getTime()) / 1000 / 60 / 60;
                 record.F_SLAInHours__c = hours.intValue();
                 record.F_SLAInDays__c = Math.floor(hours.intValue()/24).intValue();
             }
