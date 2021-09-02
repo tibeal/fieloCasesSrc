@@ -1,5 +1,7 @@
 public class F_Cases {
 
+    public static string CLOSED_STATUS = 'Closed';
+
     /**
      * Avoid duplicated processing caused by
      * - rollup summary fields
@@ -12,6 +14,9 @@ public class F_Cases {
     public static void onBeforeInsert(List<Case> records) {
         Set<Id> userIds = new Set<Id>();
         for (Case record : records) {
+            if (record.Status == 'Closed') {
+                record.F_SLAInHours__c = 0;
+            }
             userIds.add(record.CreatedById);
         }
 
@@ -36,7 +41,17 @@ public class F_Cases {
         FieloPLT.SObjectService.processRecords(records, null);
     }
 
-    public static void onBeforeUpdate(List<Case> records, Map<Id,Case> existingRecords) { }
+    public static void onBeforeUpdate(List<Case> records, Map<Id,Case> existingRecords) {
+        for (Case record : records) {
+            Case oldRecord = existingRecords.get(record.Id);
+
+            if (record.Status == CLOSED_STATUS && oldRecord.Status != CLOSED_STATUS) {
+                Long hours = (record.ClosedDate.getTime() - record.CreatedDate.getTime()) / 1000 / 60 / 60;
+                record.F_SLAInHours__c = hours.intValue();
+                record.F_SLAInDays__c = Math.floor(hours.intValue()/24).intValue();
+            }
+        }
+    }
 
     public static void onAfterUpdate(List<Case> records, Map<Id,Case> existingRecords) {
         List<Case> recordsToProcess = new List<Case>();
