@@ -9,6 +9,8 @@
   }, {
     "apiName" : "fieloplt__action__c",
     "fieldsToExclude" : "fieloplt__rulesquantity__c,fieloplt__missionsquantity__c,fieloplt__criteriafields__c,fieloplt__templatesquantity__c"
+  }, {
+    "apiName" : "fieloplt__template__c"
   } ],
   "migrationRecords" : [ {
     "objectAPIName" : "fieloplt__library__c",
@@ -43,7 +45,7 @@
             "value" : "true"
           }, {
             "apiName" : "fieloplt__key__c",
-            "value" : "Casea0W5f0000000UEdClosedDate"
+            "value" : "Casea0W5f0000000ftWClosedDate"
           }, {
             "apiName" : "fieloplt__library__c.fieloplt__externalid__c",
             "value" : "CaseLibrary",
@@ -84,7 +86,7 @@
                 "value" : "00D5f000001ABYF-a005f000000rcWN"
               }, {
                 "apiName" : "fieloplt__key__c",
-                "value" : "a0w5f0000004aNfMember__cStatusClosed"
+                "value" : "a0w5f0000004dWyMember__cStatusClosed"
               }, {
                 "apiName" : "fieloplt__ruletrigger__c.fieloplt__externalid__c",
                 "value" : "00D5f000001ABYF-a0w5f0000004aNf",
@@ -235,6 +237,87 @@
             "objectAPIName" : "fieloplt__programassignment__c",
             "records" : [ ]
           } ]
+        } ]
+      }, {
+        "objectAPIName" : "fieloplt__template__c",
+        "records" : [ {
+          "fieldsValues" : [ {
+            "apiName" : "name",
+            "value" : "Close High Priority Cases on time"
+          }, {
+            "apiName" : "fieloplt__behavior__c.fieloplt__externalid__c",
+            "value" : "00D5f000001ABYF-a0w5f0000004aNf",
+            "refObject" : "fieloplt__ruletrigger__c"
+          }, {
+            "apiName" : "fieloplt__description__c",
+            "value" : "Agents that close high priority cases under the SLA will get rewarded."
+          }, {
+            "apiName" : "fieloplt__externalid__c",
+            "value" : "00D5f000001ABYFEA4-a0o5f000000HDfCAAW"
+          }, {
+            "apiName" : "fieloplt__json__c",
+            "value" : "{\"type\":\"Each Time\",\"incentive\":{\"targeting\":{\"type\":null,\"target\":null,\"segments\":null,\"segmentationType\":\"All\"},\"startDate\":null,\"rewarding\":{\"rewards\":[{\"value\":\"100.00\",\"relatedField\":null,\"partnerMarketingBudget\":null,\"order\":1,\"increaseBudgetByRewardAmount\":null,\"expirationValue\":null,\"expirationMode\":null,\"currencyName\":\"Point\",\"conversionMode\":\"Fixed Value\",\"allocationName\":null}]},\"name\":\"Close High Priority Cases on time\",\"endDate\":null,\"eligibility\":{\"goal\":null,\"criteria\":{\"matchCriteria\":\"ALL\",\"conditions\":[{\"value\":\"High\",\"order\":1,\"operator\":\"equals\",\"field\":\"Priority\",\"active\":true},{\"value\":\"48.00\",\"order\":2,\"operator\":\"less than\",\"field\":\"F_SLAInHours__c\",\"active\":true}]},\"action\":{\"conditionValue\":\"Closed\",\"conditionField\":\"Status\",\"active\":true}}}}"
+          }, {
+            "apiName" : "fieloplt__library__c.fieloplt__externalid__c",
+            "value" : "CaseLibrary",
+            "refObject" : "fieloplt__library__c"
+          }, {
+            "apiName" : "fieloplt__type__c",
+            "value" : "Incentive"
+          } ],
+          "relatedList" : [ ]
+        }, {
+          "fieldsValues" : [ {
+            "apiName" : "name",
+            "value" : "Close Low Priority Cases on time"
+          }, {
+            "apiName" : "fieloplt__behavior__c.fieloplt__externalid__c",
+            "value" : "00D5f000001ABYF-a0w5f0000004aNf",
+            "refObject" : "fieloplt__ruletrigger__c"
+          }, {
+            "apiName" : "fieloplt__description__c",
+            "value" : "Agents that close medium priority cases under the SLA will get rewarded."
+          }, {
+            "apiName" : "fieloplt__externalid__c",
+            "value" : "00D5f000001ABYFEA4-a0o5f000000HDfHAAW"
+          }, {
+            "apiName" : "fieloplt__json__c",
+            "value" : "{\"type\":\"Each Time\",\"incentive\":{\"targeting\":{\"type\":null,\"target\":null,\"segments\":null,\"segmentationType\":\"All\"},\"startDate\":null,\"rewarding\":{\"rewards\":[{\"value\":\"25.00\",\"relatedField\":null,\"partnerMarketingBudget\":null,\"order\":1,\"increaseBudgetByRewardAmount\":null,\"expirationValue\":null,\"expirationMode\":null,\"currencyName\":\"Point\",\"conversionMode\":\"Fixed Value\",\"allocationName\":null}]},\"name\":\"Close Low Priority Cases on time\",\"endDate\":null,\"eligibility\":{\"goal\":null,\"criteria\":{\"matchCriteria\":\"ALL\",\"conditions\":[{\"value\":\"Low\",\"order\":1,\"operator\":\"equals\",\"field\":\"Priority\",\"active\":true},{\"value\":\"14.00\",\"order\":2,\"operator\":\"less or equal\",\"field\":\"F_SLAInDays__c\",\"active\":true}]},\"action\":{\"conditionValue\":\"Closed\",\"conditionField\":\"Status\",\"active\":true}}}}"
+          }, {
+            "apiName" : "fieloplt__library__c.fieloplt__externalid__c",
+            "value" : "CaseLibrary",
+            "refObject" : "fieloplt__library__c"
+          }, {
+            "apiName" : "fieloplt__type__c",
+            "value" : "Incentive"
+          } ],
+          "relatedList" : [ ]
+        }, {
+          "fieldsValues" : [ {
+            "apiName" : "name",
+            "value" : "Close Medium Priority Cases on time"
+          }, {
+            "apiName" : "fieloplt__behavior__c.fieloplt__externalid__c",
+            "value" : "00D5f000001ABYF-a0w5f0000004aNf",
+            "refObject" : "fieloplt__ruletrigger__c"
+          }, {
+            "apiName" : "fieloplt__description__c",
+            "value" : "Agents that close medium priority cases under the SLA will get rewarded."
+          }, {
+            "apiName" : "fieloplt__externalid__c",
+            "value" : "00D5f000001ABYFEA4-a0o5f000000HDfMAAW"
+          }, {
+            "apiName" : "fieloplt__json__c",
+            "value" : "{\"type\":\"Each Time\",\"incentive\":{\"targeting\":{\"type\":null,\"target\":null,\"segments\":null,\"segmentationType\":\"All\"},\"startDate\":null,\"rewarding\":{\"rewards\":[{\"value\":\"50.00\",\"relatedField\":null,\"partnerMarketingBudget\":null,\"order\":1,\"increaseBudgetByRewardAmount\":null,\"expirationValue\":null,\"expirationMode\":null,\"currencyName\":\"Point\",\"conversionMode\":\"Fixed Value\",\"allocationName\":null}]},\"name\":\"Close Medium Priority Cases on time\",\"endDate\":null,\"eligibility\":{\"goal\":null,\"criteria\":{\"matchCriteria\":\"ALL\",\"conditions\":[{\"value\":\"Medium\",\"order\":1,\"operator\":\"equals\",\"field\":\"Priority\",\"active\":true},{\"value\":\"7.00\",\"order\":2,\"operator\":\"less or equal\",\"field\":\"F_SLAInDays__c\",\"active\":true}]},\"action\":{\"conditionValue\":\"Closed\",\"conditionField\":\"Status\",\"active\":true}}}}"
+          }, {
+            "apiName" : "fieloplt__library__c.fieloplt__externalid__c",
+            "value" : "CaseLibrary",
+            "refObject" : "fieloplt__library__c"
+          }, {
+            "apiName" : "fieloplt__type__c",
+            "value" : "Incentive"
+          } ],
+          "relatedList" : [ ]
         } ]
       }, {
         "objectAPIName" : "fieloplt__consent__c",
